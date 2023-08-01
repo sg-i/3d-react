@@ -1,0 +1,22 @@
+.Main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    .canvas-3d{
+        border: 1px solid blue;  
+    }
+    .bg-model{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .name-model{
+            font-size: 13vw;
+            // color: rgb(247, 216, 42);
+            color:rgba(255, 166, 41, 0.443);
+            font-family: 'TTHoves';
+            font-weight: bold;
+        }
+    }
+    
+}

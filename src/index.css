@@ -5,9 +5,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #fbfe74;
+  /* background-color: black; */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@font-face {
+  font-family: "TTHoves";
+  src: local("TTHoves"),
+   url("./fonts/tt/TTHoves-Medium.ttf") format("truetype");
+  font-weight: normal;
+  }
