@@ -10,9 +10,11 @@ const Main = () => {
   const cubeRef = useRef(null);
   const controls = useRef(null);
   const [blockStyle, setBlockStyle] = useState(null);
+  let mixer;
   useEffect(() => {
     const clock = new THREE.Clock();
-
+    let wasTouched = false;
+    let IsToching = false;
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
@@ -30,11 +32,23 @@ const Main = () => {
 
     let controls = new TrackballControls(camera, renderer.domElement);
 
-    controls.rotateSpeed = 5;
+    controls.rotateSpeed = 1;
     controls.panSpeed = 0;
     controls.maxDistance = 12;
     controls.minDistance = 2;
+    let startTouching, endTouching;
+    controls.addEventListener('start', () => {
+      console.log('start');
+      startTouching = Date.now();
 
+      IsToching = true;
+    });
+    controls.addEventListener('end', () => {
+      startTouching = Date.now();
+
+      IsToching = false;
+      wasTouched = true;
+    });
     controls.update();
     controls.enablePan = false;
     controls.enableDamping = true;
@@ -80,6 +94,7 @@ const Main = () => {
         model.position.set(0, 0, 0);
         model.scale.set(1, 1, 1);
         scene.add(model);
+        mixer = model;
 
         animate();
       },
@@ -103,20 +118,49 @@ const Main = () => {
           left: `${left}px`,
           width: cubeRef.current.clientWidth,
           height: cubeRef.current.clientHeight,
-          background: 'blue',
+          // background: 'blue',
           zIndex: -3,
         });
       }
     };
+    var isAscending = true;
+    var maxYPosition = 0.15; // Maximum height to which the model will rise
+    var minYPosition = -0.15; // Minimum height at which the model will be placed
+
     var animate = function () {
       requestAnimationFrame(animate);
-      const delta = clock.getDelta();
 
+      if (IsToching) {
+      } else {
+        if (wasTouched) {
+          let defTime = Date.now() - startTouching;
+          console.log(defTime);
+          if (defTime > 1000) {
+            wasTouched = false;
+          }
+        } else {
+          mixer.rotation.y += 0.01;
+
+          // Up and down motion control
+          if (isAscending) {
+            mixer.position.y += 0.001; // Increase the Y position to make the model fly upwards
+          } else {
+            mixer.position.y -= 0.001; // Decrease the Y position so that the model goes downward
+          }
+
+          // Check whether the model has reached its maximum or minimum height
+          if (mixer.position.y >= maxYPosition) {
+            isAscending = false;
+          } else if (mixer.position.y <= minYPosition) {
+            isAscending = true;
+          }
+        }
+      }
       controls.update();
       renderer.render(scene, camera);
     };
 
-    animate();
+    // animate();
 
     if (cubeRef.current) {
       const { top, left } = cubeRef.current.getBoundingClientRect();
