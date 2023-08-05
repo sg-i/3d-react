@@ -5,6 +5,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import OrbitUnlimitedControls from '@janelia/three-orbit-unlimited-controls';
 
 const Main = () => {
   const cubeRef = useRef(null);
@@ -14,7 +15,7 @@ const Main = () => {
   useEffect(() => {
     const clock = new THREE.Clock();
     let wasTouched = false;
-    let IsToching = false;
+    let IsTouching = false;
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
@@ -30,28 +31,52 @@ const Main = () => {
     const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 1000);
     camera.position.set(-5, 0, 0);
 
-    let controls = new TrackballControls(camera, renderer.domElement);
-
-    controls.rotateSpeed = 1;
+    // let controls = new TrackballControls(camera, renderer.domElement);
+    let controls = new OrbitUnlimitedControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.rotateSpeed = 0.1;
     controls.panSpeed = 0;
     controls.maxDistance = 12;
     controls.minDistance = 2;
     let startTouching, endTouching;
-    controls.addEventListener('start', () => {
-      console.log('start');
+    const handleMouseUp = () => {
+      console.log('new event');
       startTouching = Date.now();
-
-      IsToching = true;
-    });
-    controls.addEventListener('end', () => {
-      startTouching = Date.now();
-
-      IsToching = false;
+      console.log('ren end');
+      IsTouching = false;
       wasTouched = true;
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+
+    renderer.domElement.addEventListener('mousedown', () => {
+      console.log('ren start');
+      startTouching = Date.now();
+      IsTouching = true;
+      window.addEventListener('mouseup', handleMouseUp);
     });
+    renderer.domElement.addEventListener('mouseup', () => {
+      // console.log(
+      //   controls.object.rotation.x,
+      //   controls.object.rotation.y,
+      //   controls.object.rotation.z,
+      // );
+      // camera.rotation.x += Math.PI / 4;
+      // Обновите OrbitControls, чтобы они применили новые углы поворота
+      // controls.update();
+      // startTouching = Date.now();
+      // console.log('ren end');
+      // IsTouching = false;
+      // wasTouched = true;
+    });
+
+    renderer.domElement.addEventListener('mouseout', () => {
+      // console.log('clicked');
+    });
+
     controls.update();
     controls.enablePan = false;
     controls.enableDamping = true;
+
     //light
     const color = 0xffffff;
     const intensity = 1;
@@ -128,19 +153,21 @@ const Main = () => {
     var minYPosition = -0.15; // Minimum height at which the model will be placed
 
     var animate = function () {
+      // camera.rotation.x = 0;
+      // camera.rotation.z = 0;
       requestAnimationFrame(animate);
-
-      if (IsToching) {
+      // console.log('IsTouching:', IsTouching, 'wasTouched:', wasTouched);
+      if (IsTouching) {
       } else {
         if (wasTouched) {
           let defTime = Date.now() - startTouching;
-          console.log(defTime);
-          if (defTime > 1000) {
+          // console.log(defTime);
+          if (defTime > 800) {
             wasTouched = false;
           }
         } else {
           mixer.rotation.y += 0.01;
-
+          // controls.rotateCamera(1);
           // Up and down motion control
           if (isAscending) {
             mixer.position.y += 0.001; // Increase the Y position to make the model fly upwards

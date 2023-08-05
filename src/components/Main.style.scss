@@ -6,6 +6,13 @@
     .canvas-3d{
         border: 5px solid rgba(255, 166, 41, 0.443); ;  
         border-radius: 25px;
+        background-color: rgba(0, 0, 0, 0);
+
+        canvas{
+            outline: none;
+            border: 0;
+            background-color: rgba(0, 0, 0, 0);
+        }
     }
     .bg-model{
         display: flex;
