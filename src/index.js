@@ -5,6 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './fonts/tt/TTHoves-Medium.ttf';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const detectedLanguage = navigator.language.split('-')[0];
+const language = detectedLanguage === 'ru' ? 'ru' : 'en';
+localStorage.setItem('userLanguage', language);
+
 root.render(
   // <React.StrictMode>
   <App />,

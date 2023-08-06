@@ -1,0 +1,28 @@
+{
+    "models":[
+        {
+            "name":"Cyberllama Anny",
+            "src": "models/cyberllama_anny/scene.gltf",
+            "colors":{
+                "ui": "#fbfe74",
+                "background": "#fbfe74",
+                "second":"rgba(255, 166, 41, 0.443)"
+            },
+            "background": {
+                "word":"CYBERLLAMA",
+                "fontSize": "12vw"
+            },
+            "data":{
+                "language":{
+                    "en":{
+
+                    },
+                    "ru":{
+
+                    }
+                }
+            }
+        }
+    ]
+        
+}

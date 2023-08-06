@@ -6,12 +6,16 @@ import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import OrbitUnlimitedControls from '@janelia/three-orbit-unlimited-controls';
+import CustomCursor from './CustomCursor/CustomCursor.jsx';
+import { Header } from './CustomCursor/Header/Header';
 
 const Main = () => {
+  const [loading, setLoading] = useState(false);
   const cubeRef = useRef(null);
   const controls = useRef(null);
   const [blockStyle, setBlockStyle] = useState(null);
   let mixer;
+
   useEffect(() => {
     const clock = new THREE.Clock();
     let wasTouched = false;
@@ -29,15 +33,19 @@ const Main = () => {
     scene.environment = pmremGenerator.fromScene(new RoomEnvironment(renderer), 0.04).texture;
 
     const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 1000);
+
     camera.position.set(-5, 0, 0);
 
     // let controls = new TrackballControls(camera, renderer.domElement);
     let controls = new OrbitUnlimitedControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.rotateSpeed = 0.1;
+    controls.enableDamping = false;
+    controls.enableZoom = false;
+    controls.enablePan = false;
+    controls.rotateSpeed = 0.6;
     controls.panSpeed = 0;
     controls.maxDistance = 12;
     controls.minDistance = 2;
+    controls.maxZoom = 1;
     let startTouching, endTouching;
     const handleMouseUp = () => {
       console.log('new event');
@@ -54,50 +62,11 @@ const Main = () => {
       IsTouching = true;
       window.addEventListener('mouseup', handleMouseUp);
     });
-    renderer.domElement.addEventListener('mouseup', () => {
-      // console.log(
-      //   controls.object.rotation.x,
-      //   controls.object.rotation.y,
-      //   controls.object.rotation.z,
-      // );
-      // camera.rotation.x += Math.PI / 4;
-      // Обновите OrbitControls, чтобы они применили новые углы поворота
-      // controls.update();
-      // startTouching = Date.now();
-      // console.log('ren end');
-      // IsTouching = false;
-      // wasTouched = true;
-    });
-
-    renderer.domElement.addEventListener('mouseout', () => {
-      // console.log('clicked');
-    });
 
     controls.update();
     controls.enablePan = false;
     controls.enableDamping = true;
 
-    //light
-    const color = 0xffffff;
-    const intensity = 1;
-    const light = new THREE.DirectionalLight(color, intensity);
-    light.position.set(0, 10, 0);
-    light.target.position.set(-5, 0, 0);
-    scene.add(light);
-    scene.add(light.target);
-
-    class ColorGUIHelper {
-      constructor(object, prop) {
-        this.object = object;
-        this.prop = prop;
-      }
-      get value() {
-        return `#${this.object[this.prop].getHexString()}`;
-      }
-      set value(hexString) {
-        this.object[this.prop].set(hexString);
-      }
-    }
     // const gui = new GUI();
     // gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
     // gui.add(light, 'intensity', 0, 2, 0.01);
@@ -122,6 +91,7 @@ const Main = () => {
         mixer = model;
 
         animate();
+        setLoading(true);
       },
       undefined,
       function (e) {
@@ -143,7 +113,6 @@ const Main = () => {
           left: `${left}px`,
           width: cubeRef.current.clientWidth,
           height: cubeRef.current.clientHeight,
-          // background: 'blue',
           zIndex: -3,
         });
       }
@@ -153,10 +122,7 @@ const Main = () => {
     var minYPosition = -0.15; // Minimum height at which the model will be placed
 
     var animate = function () {
-      // camera.rotation.x = 0;
-      // camera.rotation.z = 0;
       requestAnimationFrame(animate);
-      // console.log('IsTouching:', IsTouching, 'wasTouched:', wasTouched);
       if (IsTouching) {
       } else {
         if (wasTouched) {
@@ -167,7 +133,6 @@ const Main = () => {
           }
         } else {
           mixer.rotation.y += 0.01;
-          // controls.rotateCamera(1);
           // Up and down motion control
           if (isAscending) {
             mixer.position.y += 0.001; // Increase the Y position to make the model fly upwards
@@ -197,21 +162,45 @@ const Main = () => {
         left: `${left}px`,
         width: cubeRef.current.clientWidth,
         height: cubeRef.current.clientHeight,
-        // background: 'blue',
         zIndex: -3,
       });
     }
+
+    //for header
+    const handleScroll = () => {
+      const header = document.querySelector('.header');
+      if (header) {
+        const scrolled = window.scrollY > 0; // Проверяем, прокручена ли страница вниз
+        if (scrolled) {
+          header.classList.add('scrolled'); // Добавляем класс, если страница прокручена
+        } else {
+          header.classList.remove('scrolled'); // Удаляем класс, если страница в верхней позиции
+        }
+      }
+    };
+
+    // Добавляем слушатель события прокрутки для окна
+    window.addEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <>
       <div className="Main">
-        <div className="canvas-3d" ref={cubeRef}></div>
-        {blockStyle && (
-          <div className="bg-model" style={blockStyle}>
-            <div className="name-model">CYBERLAMA</div>
+        <Header />
+
+        <div className="first-view">
+          <div className="wrap-for-canvas">
+            <div className="canvas-3d" ref={cubeRef}></div>
           </div>
-        )}
+          {loading && <CustomCursor targetRef={cubeRef} />}
+          {blockStyle && (
+            <div className="bg-model" style={blockStyle}>
+              <div className="name-model">CYBERLLAMA</div>
+            </div>
+          )}
+          <div>scroll to explore</div>
+        </div>
+        <div>' '</div>
       </div>
     </>
   );

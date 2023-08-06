@@ -1,0 +1,27 @@
+.custom-cursor {
+  position: absolute; 
+  width: 6vw;
+  height: 6vw;
+  border: 4px solid rgba(255, 166, 41, 0.443);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: space-around;
+  backdrop-filter: blur(4px);
+  .cursor-text{
+    font-size: 1.3vw;
+  }
+  .arrow-for-cursor{
+    width: 0.7vw;
+    height: 0.7vw;
+  }
+  .left-arrow{
+    transform: rotate(90deg);
+  }
+  .right-arrow{
+    transform: rotate(-90deg);
+  }
+}
