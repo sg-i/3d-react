@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import * as THREE from 'three';
 import './Main.style.scss';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
@@ -8,6 +8,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import OrbitUnlimitedControls from '@janelia/three-orbit-unlimited-controls';
 import CustomCursor from './CustomCursor/CustomCursor.jsx';
 import { Header } from './CustomCursor/Header/Header';
+import { LanguageContext } from '../context/LanguageContext';
 
 const Main = () => {
   const [loading, setLoading] = useState(false);
@@ -15,8 +16,36 @@ const Main = () => {
   const controls = useRef(null);
   const [blockStyle, setBlockStyle] = useState(null);
   let mixer;
+  const { userLanguage, changeLanguage } = useContext(LanguageContext);
+  console.log('sdf', userLanguage);
+  //data from json-server
+  const [data, setData] = useState(null);
 
+  const scrollToExplore = () => {
+    const exploreSection = document.getElementById('second-view');
+    if (exploreSection) {
+      const offset = 60; // Дополнительный отступ
+      const top = exploreSection.getBoundingClientRect().top + window.pageYOffset - offset;
+
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
   useEffect(() => {
+    // const handleScrollFromUp = () => {
+    //   if (window.scrollY === 0) {
+    //     scrollToExplore();
+    //   }
+    // };
+
+    // window.addEventListener('scrolldown', handleScrollFromUp);
+
+    fetch('http://localhost:3001/models')
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data[0]);
+      })
+      .catch((error) => console.error('Error:', error));
+
     const clock = new THREE.Clock();
     let wasTouched = false;
     let IsTouching = false;
@@ -183,11 +212,14 @@ const Main = () => {
     window.addEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <>
       <div className="Main">
         <Header />
-
         <div className="first-view">
           <div className="wrap-for-canvas">
             <div className="canvas-3d" ref={cubeRef}></div>
@@ -198,9 +230,26 @@ const Main = () => {
               <div className="name-model">CYBERLLAMA</div>
             </div>
           )}
-          <div>scroll to explore</div>
+          <div onClick={scrollToExplore} className="scroll-to-explore">
+            <div className="sclr-exp-text">SCROLL TO EXPLORE</div>
+            <div class="vertical-line"></div>
+          </div>
         </div>
-        <div>' '</div>
+        <div id="second-view" className="second-view">
+          <div className="content-title content">
+            {data && (
+              <>
+                Story about <b>{data.name}</b>:
+              </>
+            )}
+          </div>
+          <div className="content">
+            {data &&
+              data.content.language[userLanguage].story
+                .split('\n\n')
+                .map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+          </div>
+        </div>
       </div>
     </>
   );

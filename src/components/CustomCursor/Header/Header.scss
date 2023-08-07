@@ -3,17 +3,16 @@
     border: none;
     background-color: #fbfe74;
     // background-color: red;
-    position: sticky;
+    position: fixed;
     top:0;
-    padding: 20px;
     display: flex;
-    height: 20px;
+    height: 60px;
     justify-content: space-between;
     width: 95%;
     align-items: center;
     z-index: 15;
     // border-bottom: 2px solid transparent;
-    overflow: hidden; 
+    // overflow: hidden; 
     // margin-bottom: 2px;
     .header-title{
         font-weight: 900;
@@ -45,9 +44,9 @@
             
         }
         .unselected{
-            color:#fbfe74;
-            -webkit-text-stroke: 0.1px #9b9b9b; 
-            text-stroke: 0.1px #9b9b9b;
+            color: rgba(255, 166, 41, 0.443);
+            // -webkit-text-stroke: 0.1px #9b9b9b; 
+            // text-stroke: 0.1px #9b9b9b;
         }
     }
 }

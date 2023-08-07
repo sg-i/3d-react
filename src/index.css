@@ -18,4 +18,29 @@ code {
   src: local("TTHoves"),
    url("./fonts/tt/TTHoves-Medium.ttf") format("truetype");
   font-weight: normal;
-  }
+}
+
+body {
+  overflow: auto;
+  scrollbar-color: black transparent ; 
+
+}
+
+/* custom scrollbar */
+*::-webkit-scrollbar {
+  width: 17px;
+}
+*::-webkit-scrollbar-track {
+  background: #fbfe74;
+  /* change me to blue to match the background */
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 14px;
+  background: black;
+  border-right: 4px #fbfe74 solid;
+  border-left: 4px #fbfe74 solid;
+
+  border-top: 3px #fbfe74 solid;
+  border-bottom: 3px #fbfe74 solid;
+  /* change border color to blue to match the background */
+}
