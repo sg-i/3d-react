@@ -27,8 +27,8 @@ export const Header = () => {
           viewBox="0 0 40 10"
           fill="none">
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M39.9999 0.324707H-6.10352e-05V3.01302H39.9999V0.324707ZM35.3246 6.98703H4.67526V9.67534H35.3246V6.98703Z"
             fill="#323232"
           />

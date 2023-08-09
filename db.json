@@ -1,8 +1,33 @@
 {
     "models":[
         {
+            "id":0,
             "name":"Cyberllama Anny",
-            "src": "models/cyberllama_anny/scene.gltf",
+            "src": "http://localhost:3000/models/cyberllama_anny/scene.gltf",
+            "colors":{
+                "ui": "#fbfe74",
+                "background": "#fbfe74",
+                "second":"rgba(255, 166, 41, 0.443)"
+            },
+            "background": {
+                "word":"CYBERLLAMA",
+                "fontSize": "12vw"
+            },
+            "content":{
+                "language":{
+                    "en":{
+                        "story": "Once upon a time, in the futuristic world of Llamaville, a special llama named Cyberllama Anny lived. Cyberllama Anny wasn't your ordinary llama – she was a marvel of technology and cuteness, a blend of advanced robotics and fluffy charm.\n\nAnny was created by a brilliant scientist named Dr. Llamastein, who had a passion for both llamas and cutting-edge technology. Dr. Llamastein wanted to create a companion that would bring joy and wonder to the world, and thus, Cyberllama Anny came to life.\n\nWith her sleek silver metallic body adorned with colorful LED lights and a fluffy faux fur coat, Cyberllama Anny quickly became the star of Llamaville. She had big, expressive LED eyes that could change colors to match her mood, and her movements were smooth and graceful, thanks to her intricate robotic limbs. Anny's laughter was a melodious combination of soft beeps and giggles, spreading happiness wherever she went.\n\nAnny's days were spent exploring the technicolor landscapes of Llamaville, making friends with both humans and organic llamas. She loved to help the local farmers by tending to their digital gardens and ensuring that their virtual crops thrived. Anny had a special knack for creating intricate holographic flower arrangements that would bloom with radiant colors.\n\nOne day, a great pixel storm threatened to disrupt the tranquility of Llamaville. The townspeople were worried, unsure of how to protect their digital homes and gardens. But Cyberllama Anny stepped up, devising a plan to create a giant energy shield made of shimmering rainbow pixels. With her quick thinking and innovative approach, Anny managed to shield Llamaville from the storm's destructive power, saving the day and earning the admiration of everyone in the town.\n\nAs time went on, Cyberllama Anny continued to spread joy and creativity throughout Llamaville. She organized holographic art shows, taught virtual dance classes, and even helped Dr. Llamastein with his scientific experiments. Anny's heart was as warm as her LED lights were bright, and she cherished her friendships with both humans and digital beings alike.\n\nAnd so, the story of Cyberllama Anny, the adorable blend of technology and cuteness, became a beloved tale in Llamaville. Her legacy lived on as a reminder that even in a world filled with advanced gadgets and gizmos, the simplest things – like friendship, creativity, and laughter – were still the most important."
+                    },
+                    "ru":{
+                        "story": "Однажды, в будущем мире Ламавилля, жила особенная лама по имени Киберлама Энни. Киберлама Энни была необычной ламой – она была чудом технологии и милоты, сочетанием передовой робототехники и пушистой прелестью.\n\nЭнни была создана гениальным ученым по имени доктор Лламастайн, который разделял страсть и к ламам, и к передовой технологии. Доктор Лламастайн хотел создать спутника, который принес бы радость и восторг миру, и так появилась Киберлама Энни.\n\nС ее стильным серебряным металлическим корпусом, украшенным разноцветными светодиодами, и пушистым искусственным мехом, Киберлама Энни быстро стала звездой Ламавилля. У нее были большие выразительные светодиодные глаза, меняющие цвета в зависимости от настроения, а ее движения были плавными и изящными благодаря сложным роботизированным конечностям. Смех Энни звучал как мелодичное сочетание нежных писков и хихиканья, распространяя радость, где бы она ни появилась.\n\nДни Энни проходили в исследовании разноцветных пейзажей Ламавилля, в завоевании дружбы как с людьми, так и с органическими ламами. Ей нравилось помогать местным фермерам ухаживать за своими цифровыми садами и обеспечивать процветание их виртуальных урожаев. У Энни был особый талант создавать сложные голографические цветочные композиции, которые расцветали в излучаемых красках.\n\nОднажды над Ламавиллем нависла огромная пиксельная буря, угрожая нарушить спокойствие города. Жители были встревожены, не зная, как защитить свои цифровые дома и сады. Но Киберлама Энни предприняла шаг и разработала план создания гигантского энергетического щита из мерцающих радужных пикселей. Благодаря ее быстрому уму и инновационному подходу, Энни сумела защитить Ламавилль от разрушительной силы бури, спасая день и завоевывая восхищение всех жителей города.\n\nС течением времени Киберлама Энни продолжала распространять радость и креативность по Ламавиллю. Она организовывала голографические выставки искусства, проводила виртуальные уроки танцев, и даже помогала доктору Лламастайну в его научных экспериментах. Сердце Энни было так же теплым, как ее светодиодные глаза были яркими, и она ценила свои дружеские отношения как с людьми, так и с цифровыми существами.\n\nТак и жила Киберлама Энни, милый союз технологии и милоты, ставшая любимой сказкой в Ламавилле. Ее наследие жило и напоминало, что даже в мире, полном передовых гаджетов и устройств, самые простые вещи – как дружба, креативность и смех – оставались самыми важными."
+                    }
+                }
+            }
+        },
+        {   
+            "id": 1,
+            "name":"Cyberpunk Car",
+            "src": "http://localhost:3000/models/jukebox/scene.gltf",
             "colors":{
                 "ui": "#fbfe74",
                 "background": "#fbfe74",
