@@ -7,8 +7,9 @@ import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import OrbitUnlimitedControls from '@janelia/three-orbit-unlimited-controls';
 import CustomCursor from './CustomCursor/CustomCursor.jsx';
-import { Header } from './CustomCursor/Header/Header';
+import { Header } from './Header/Header';
 import { LanguageContext } from '../context/LanguageContext';
+import { Footer } from './Footer/Footer';
 
 const Main = () => {
   const [loading, setLoading] = useState(false);
@@ -220,36 +221,41 @@ const Main = () => {
     <>
       <div className="Main">
         <Header />
-        <div className="first-view">
-          <div className="wrap-for-canvas">
-            <div className="canvas-3d" ref={cubeRef}></div>
-          </div>
-          {loading && <CustomCursor targetRef={cubeRef} />}
-          {blockStyle && (
-            <div className="bg-model" style={blockStyle}>
-              <div className="name-model">CYBERLLAMA</div>
+        <>
+          <div className="first-view">
+            <div className="wrap-for-canvas">
+              <div className="canvas-3d" ref={cubeRef}></div>
             </div>
-          )}
-          <div onClick={scrollToExplore} className="scroll-to-explore">
-            <div className="sclr-exp-text">SCROLL TO EXPLORE</div>
-            <div class="vertical-line"></div>
-          </div>
-        </div>
-        <div id="second-view" className="second-view">
-          <div className="content-title content">
-            {data && (
-              <>
-                Story about <b>{data.name}</b>:
-              </>
+            {loading && <CustomCursor targetRef={cubeRef} />}
+            {blockStyle && (
+              <div className="bg-model" style={blockStyle}>
+                <div className="name-model">CYBERLLAMA</div>
+              </div>
             )}
+            <div onClick={scrollToExplore} className="scroll-to-explore">
+              <div className="sclr-exp-text">
+                {userLanguage === 'ru' ? 'ПРОКРУТИ ЧТОБЫ УЗНАТЬ' : 'SCROLL TO EXPLORE'}
+              </div>
+              <div class="vertical-line"></div>
+            </div>
           </div>
-          <div className="content">
-            {data &&
-              data.content.language[userLanguage].story
-                .split('\n\n')
-                .map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+          <div id="second-view" className="second-view">
+            <div className="content-title content">
+              {data && (
+                <>
+                  {userLanguage === 'ru' ? 'История о' : 'Story about'} <b>{data.name}</b>:
+                </>
+              )}
+            </div>
+            <div className="content">
+              {data &&
+                data.content.language[userLanguage].story
+                  .split('\n\n')
+                  .map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+            </div>
           </div>
-        </div>
+        </>
+        <Footer />
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import './Header.scss';
-import { LanguageContext } from '../../../context/LanguageContext';
+import { LanguageContext } from '../../context/LanguageContext';
 export const Header = () => {
   const { userLanguage, changeLanguage } = useContext(LanguageContext);
   const handleLanguageChange = (newLang) => {
@@ -16,7 +16,7 @@ export const Header = () => {
     });
   };
   return (
-    <div className="header">
+    <header className="header">
       <div className="header-title">3D REACT</div>
       <div className="header-svg">
         <svg
@@ -46,6 +46,6 @@ export const Header = () => {
           RU
         </span>
       </div>
-    </div>
+    </header>
   );
 };
