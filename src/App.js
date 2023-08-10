@@ -29,19 +29,6 @@ export function App() {
   // console.log(models);
   return (
     <LanguageProvider>
-      <div style={{ zIndex: 9999, position: 'fixed', top: 0 }}>
-        <Link to={'/'}>
-          <button>Home</button>
-        </Link>
-
-        <Link to={`/models/0`}>
-          <button>0 </button>
-        </Link>
-
-        <Link to={`/models/1`}>
-          <button>1 </button>
-        </Link>
-      </div>
       <div className="App">
         <Header />
         <Outlet />

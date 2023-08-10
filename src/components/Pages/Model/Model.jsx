@@ -8,16 +8,24 @@ import OrbitUnlimitedControls from '@janelia/three-orbit-unlimited-controls';
 import CustomCursor from '../../CustomCursor/CustomCursor';
 import './Model.style.scss';
 import { getModels } from '../../../loaders/getModels';
-import { Form, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { useUpdateEffect } from 'react-use';
-
+import { getNeighbors } from '../../../loaders/getNeighbors';
 export async function loader({ params }) {
   // console.log(params);
   const data = await getModels(params.modelId);
-  return { data };
+  const { prev, next } = await getNeighbors(params.modelId);
+  return { data, prev, next };
 }
 
 export const Model = () => {
+  const leftButtobChangeRef = useRef(null);
+  const rightButtobChangeRef = useRef(null);
+  const [styleForLeftButtonChangeText, setStyleForLeftButtonChangeText] = useState(null);
+  const [styleForRightButtonChangeText, setStyleForRightButtonChangeText] = useState(null);
+
+  const [styleForLeftButtonChange, setStyleForLeftButtonChange] = useState(null);
+  const [styleForRightButtonChange, setStyleForRightButtonChange] = useState(null);
   const [loadingProgress, setLoadingProgress] = useState(0);
   THREE.DefaultLoadingManager.onStart = () => {
     console.log('Loading started');
@@ -58,7 +66,7 @@ export const Model = () => {
   const [forModel, setForModel] = useState();
   const sceneRef = useRef();
   // console.log('1');
-  const { data } = useLoaderData();
+  const { data, prev, next } = useLoaderData();
   const loader = new GLTFLoader();
   const renderRef = useRef(null);
   const [loading, setLoading] = useState(false);
@@ -170,8 +178,7 @@ export const Model = () => {
 
       renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
       if (cubeRef.current) {
-        const { top, left } = cubeRef.current.getBoundingClientRect();
-        // console.log(top, left);
+        const { top, left, right, height } = cubeRef.current.getBoundingClientRect();
         setBlockStyle({
           position: 'absolute',
           top: `${top}px`,
@@ -180,6 +187,22 @@ export const Model = () => {
           height: cubeRef.current.clientHeight,
           zIndex: -3,
         });
+        console.log(top, left);
+        const newWidth = left * 0.8;
+        const newMargin = (left - newWidth) / 2;
+        const newHeight = height * 0.7;
+        setStyleForLeftButtonChange((prevStyle) => ({
+          ...prevStyle,
+          left: `${newMargin}px`,
+          width: `${newWidth}px`,
+          height: `${height * 0.7}px`,
+        }));
+        setStyleForRightButtonChange((prevStyle) => ({
+          ...prevStyle,
+          left: `${right + newMargin}px`,
+          width: `${newWidth}px`,
+          height: `${height * 0.7}px`,
+        }));
       }
     };
     var isAscending = true;
@@ -358,7 +381,7 @@ export const Model = () => {
     console.log(loadingProgress);
     if (loadingProgress === 100) {
       if (cubeRef.current) {
-        const { top, left } = cubeRef.current.getBoundingClientRect();
+        const { top, left, right, height } = cubeRef.current.getBoundingClientRect();
         setBlockStyle({
           position: 'absolute',
           top: `${top}px`,
@@ -367,14 +390,101 @@ export const Model = () => {
           height: cubeRef.current.clientHeight,
           zIndex: -3,
         });
+        console.log(top, left);
+        const newWidth = left * 0.8;
+        const newMargin = (left - newWidth) / 2;
+        const newHeight = height * 0.7;
+        setStyleForLeftButtonChange({
+          top: `${top + newHeight / 4}px`,
+          left: `${newMargin}px`,
+          width: `${newWidth}px`,
+          height: `${height * 0.7}px`,
+        });
+        setStyleForRightButtonChange({
+          top: `${top + newHeight / 4}px`,
+          left: `${right + newMargin}px`,
+          width: `${newWidth}px`,
+          height: `${height * 0.7}px`,
+        });
       }
     }
   }, [loadingProgress]);
-
+  useUpdateEffect(() => {
+    if (leftButtobChangeRef.current) {
+      const { top, left, right, height } = leftButtobChangeRef.current.getBoundingClientRect();
+      console.log(top, left, right, height);
+      setStyleForLeftButtonChangeText({
+        position: 'absolute',
+        top: `${top + 55}px`,
+        left: `${left}px`,
+        width: `${right - left}px`,
+        height: `${height * 0.8}px`,
+      });
+    }
+  }, [styleForLeftButtonChange]);
+  useUpdateEffect(() => {
+    if (rightButtobChangeRef.current) {
+      const { top, left, right, height } = rightButtobChangeRef.current.getBoundingClientRect();
+      console.log(top, left, right, height);
+      setStyleForRightButtonChangeText({
+        position: 'absolute',
+        top: `${top + 55}px`,
+        left: `${left}px`,
+        width: `${right - left}px`,
+        height: `${height * 0.8}px`,
+      });
+    }
+  }, [styleForRightButtonChange]);
   return (
     <div>
+      <button
+        onClick={() => {
+          console.log(cubeRef.current);
+          console.log(cubeRef.current.getBoundingClientRect());
+        }}
+        style={{ position: 'absolute', top: 0, right: 0 }}>
+        sdf
+      </button>
+      {styleForLeftButtonChange && (
+        <>
+          {styleForLeftButtonChangeText && (
+            <div style={styleForLeftButtonChangeText} className="button-text">
+              {prev.name}
+            </div>
+          )}
+          <Link to={`/models/${prev.id}`}>
+            <div
+              ref={leftButtobChangeRef}
+              style={styleForLeftButtonChange}
+              className="left-button-change"></div>
+          </Link>
+        </>
+      )}
+      {styleForRightButtonChange && (
+        <>
+          {styleForRightButtonChangeText && (
+            <div style={styleForRightButtonChangeText} className="button-text">
+              {next.name}
+            </div>
+          )}
+          <Link to={`/models/${next.id}`}>
+            <div
+              ref={rightButtobChangeRef}
+              style={styleForRightButtonChange}
+              className="right-button-change"></div>
+          </Link>
+        </>
+      )}
+      {/* <div className="change-model-buttons">
+        <div className="left-button change-button">
+          <div className="text-button">button 1</div>
+        </div>
+        <div className="right-button change-button">
+          <div className="text-button">button 1</div>
+        </div>
+      </div> */}
       <div className="first-view">
-        <button
+        {/* <button
           onClick={() => {
             console.log(forModel);
             console.log(scene);
@@ -385,7 +495,7 @@ export const Model = () => {
             // }
           }}>
           button
-        </button>
+        </button> */}
         <div className="wrap-for-canvas">
           <div
             style={loadingProgress === 100 ? {} : { display: 'none' }}

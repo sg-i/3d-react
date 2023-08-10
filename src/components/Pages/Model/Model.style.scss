@@ -1,3 +1,92 @@
+.button-text{
+    // transform: translate(0, -50%);
+    // background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover{
+    }
+}
+.left-button-change{
+    
+    cursor: pointer;
+    position: absolute;
+    border-radius: 10px;
+    // left: 4px;
+    // top: 50%;
+    // transform: translate(0, -50%);
+    // border: 1px solid black;
+    border:3px solid rgba(255, 166, 41, 0.443);
+    // border-radius: 20px;
+    // margin: 50px;
+    // background-color: blue;
+    margin-left: -10px;
+    transform: perspective(10px) rotateY(-1deg) ; 
+    &:hover{
+
+    }
+    
+}
+.right-button-change{
+    cursor: pointer;
+    position: absolute;
+    border-radius: 10px;
+    // left: 4px;
+    // top: 50%;
+    // transform: translate(0, -50%);
+    // border: 1px solid black;
+    border:3px solid rgba(255, 166, 41, 0.443);
+    // border-radius: 20px;
+    // margin: 50px;
+    // background-color: blue;
+    margin-left: 6px;
+    transform: perspective(10px) rotateY(1deg)  ; 
+}
+.change-model-buttons{
+    position: fixed;
+    // top:50%;
+    // left:0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    top: 0;
+
+    // position: absolute; /* Для позиционирования кнопок внутри контейнера */
+    min-height: 100vh;
+    // min-width: 100%;
+    z-index: 9999;
+    .change-button{
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        // width: 7vw;
+        top: 50%;
+        transform: translate(0, -50%);
+        // border: 1px solid rgba(255, 166, 41, 0.443);
+        height: 40vh;
+        border: 1px solid black;
+    }
+    .left-button{
+        left: 0;
+        
+        // margin: 50px;
+        
+    }
+    
+    .right-button{
+        right:0;
+        
+        // transform: rotate(90deg);
+        // border-bottom: 10vw solid red;
+        // right: 1vw;
+        // width: 45vh;
+        // height: 6vw;
+        // background: red;
+        // transform: perspective(10px) rotateY(1deg) rotate(90deg);
+        // .text-button{
+        // }
+    }
+}
 .first-view{
     padding-top: 50px;
     display: flex;
