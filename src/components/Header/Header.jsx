@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Header.scss';
 import { LanguageContext } from '../../context/LanguageContext';
-export const Header = () => {
+export const Header = ({ style, headerRef, toggleMenu }) => {
   const { userLanguage, changeLanguage } = useContext(LanguageContext);
   const handleLanguageChange = (newLang) => {
     if (userLanguage != newLang) {
@@ -16,11 +17,16 @@ export const Header = () => {
     });
   };
   return (
-    <header className="header">
-      <div className="header-title">3D REACT</div>
+    <header ref={headerRef} style={style} className="header">
+      <div className="header-title-wrap">
+        <Link to={'home'}>
+          <div className="header-title">3D REACT</div>
+        </Link>
+      </div>
       <div className="header-svg">
+        {/* <Link to={'home'}> */}
         <svg
-          onClick={handleScrollToTop}
+          onClick={toggleMenu}
           xmlns="http://www.w3.org/2000/svg"
           width="40"
           height="10"
@@ -33,6 +39,7 @@ export const Header = () => {
             fill="#323232"
           />
         </svg>
+        {/* </Link> */}
       </div>
       <div className="header-language">
         <span

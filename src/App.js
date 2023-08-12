@@ -1,48 +1,100 @@
 import logo from './logo.svg';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './App.scss';
 import { LanguageProvider } from './context/LanguageContext';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Model } from './components/Pages/Model/Model';
-import { Link, Outlet, useLoaderData } from 'react-router-dom';
+import { Link, Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import { getModels } from './loaders/getModels';
-
-export async function loader() {
-  const models = await getModels();
-  return { models };
-}
+import { MiniModel } from './components/Header/MiniModel/MiniModel';
 
 export function App() {
-  // const [models, setmodels] = useState(null);
+  const { data } = useLoaderData();
 
-  // useEffect(() => {
-  //   fetch('http://localhost:3001/models')
-  //     .then((response) => response.json())
-  //     .then((models) => {
-  //       console.log(models);
-  //       setmodels(models);
-  //     })
-  //     .catch((error) => console.error('Error:', error));
-  // }, []);
-  const { models } = useLoaderData();
-  // console.log(models);
+  const [isMenuOn, setIsMenuOn] = useState(false);
+  const [headerPosition, setHeaderPosition] = useState(0);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const [newWindowHeight, setNewWindowHeight] = useState(0);
+  const headerRef = useRef(null);
+
+  const navigate = useNavigate();
+  const toggleMenu = () => {
+    console.log(headerRef.current);
+    const headerHeightNow = headerRef.current.clientHeight;
+    const screenHeight = window.innerHeight / 3;
+    setHeaderPosition(isMenuOn ? 0 : screenHeight - headerHeightNow);
+    setHeaderHeight(headerHeightNow);
+    setNewWindowHeight(screenHeight - headerHeightNow);
+    setIsMenuOn(!isMenuOn);
+    // document.body.style.overflow = isMenuOn ? 'auto' : 'hidden';
+  };
+
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleSelectItem = (item) => {
+    setSelectedItem(item);
+  };
+
   return (
     <LanguageProvider>
       <div className="App">
-        <Header />
-        <Outlet />
-        {/* {models &&
-          models.map((model) => {
-            return <Model data={model} />;
-          })} */}
-        {/* {models.length ? (
-          models.map((elem) => {
-            return <div>{elem.name}</div>;
-          })
-        ) : (
-          <div>Нет моделей</div>
-        )} */}
+        <div
+          style={
+            isMenuOn
+              ? {
+                  position: 'fixed',
+                  overflow: 'hidden',
+                  top: 0,
+                  height: `${newWindowHeight}px`,
+                  backgroundColor: '#fbfe74',
+                  width: '100%',
+                  zIndex: 9999,
+                  transition: 'height 0.7s ease-in-out',
+                }
+              : {
+                  position: 'fixed',
+                  overflow: 'hidden',
+                  top: 0,
+                  height: '0px',
+                  backgroundColor: '#fbfe74',
+                  width: '100%',
+                  zIndex: 9999,
+                  transition: 'height 0.7s ease-in-out',
+                }
+          }>
+          {
+            <div
+              style={{
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                overflowX: 'auto',
+                overflowY: 'hidden',
+              }}>
+              {data.map((item) => (
+                <MiniModel
+                  key={item.id}
+                  id={item.id}
+                  image={item.images.miniModel}
+                  name={item.name}
+                  isSelected={selectedItem === item}
+                  setIsMenuOn={setIsMenuOn}
+                  onSelect={() => handleSelectItem(item)}
+                />
+              ))}
+            </div>
+          }
+        </div>
+        <Header
+          toggleMenu={toggleMenu}
+          headerRef={headerRef}
+          style={
+            isMenuOn ? { top: headerPosition, boxShadow: '0px 7px 34px rgba(0, 0, 0, 0.3)' } : {}
+          }
+        />
+        {<Outlet />}
+
         <Footer />
       </div>
     </LanguageProvider>

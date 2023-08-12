@@ -1,0 +1,22 @@
+.mini-model{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 250px;
+    padding: 20px;
+    .image-mini-model{
+        border: 8px solid transparent;
+        border-radius: 25px;
+        // width: 260px;
+        // height: 50%;
+    }
+    .mini-model-selected{
+        border: 8px solid rgb(255, 149, 0);
+    }
+    transition: transform 0.1s ease-in-out;
+    &:hover{
+        transform: scale(1.03);
+        
+    }
+}
+

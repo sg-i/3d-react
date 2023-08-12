@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { App, loader as modelsLoader } from './App';
+import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 import './fonts/tt/TTHoves-Medium.ttf';
 // import { Root} from './routes/Root';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom';
 import ErrorPage from './routes/ErrorPage';
 import { Model, loader as modelLoader } from './components/Pages/Model/Model';
+import { Home, loader as modelsLoader } from './components/Pages/Home/Home';
+import { getModels } from './loaders/getModels';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const detectedLanguage = navigator.language.split('-')[0];
@@ -17,13 +19,28 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    loader: modelsLoader,
+    loader: async ({ request }) => {
+      const url = new URL(request.url);
+      console.log(url.pathname);
+      if (url.pathname === '/') {
+        return redirect('home');
+      } else {
+        const data = await getModels();
+        console.log(data);
+        return { data };
+      }
+    },
     errorElement: <ErrorPage />,
     children: [
       {
         path: 'models/:modelId',
         element: <Model />,
         loader: modelLoader,
+      },
+      {
+        path: 'home',
+        loader: modelsLoader,
+        element: <Home />,
       },
     ],
   },

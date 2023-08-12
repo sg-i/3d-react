@@ -373,12 +373,8 @@ export const Model = () => {
     //   scene.remove(scene.children[0]);
     // }
   }, [data]);
-  useUpdateEffect(() => {
-    console.log(forModel);
-    console.log('upd');
-  }, [forModel]);
+
   useEffect(() => {
-    console.log(loadingProgress);
     if (loadingProgress === 100) {
       if (cubeRef.current) {
         const { top, left, right, height } = cubeRef.current.getBoundingClientRect();
@@ -390,7 +386,6 @@ export const Model = () => {
           height: cubeRef.current.clientHeight,
           zIndex: -3,
         });
-        console.log(top, left);
         const newWidth = left * 0.8;
         const newMargin = (left - newWidth) / 2;
         const newHeight = height * 0.7;
@@ -437,14 +432,6 @@ export const Model = () => {
   }, [styleForRightButtonChange]);
   return (
     <div>
-      <button
-        onClick={() => {
-          console.log(cubeRef.current);
-          console.log(cubeRef.current.getBoundingClientRect());
-        }}
-        style={{ position: 'absolute', top: 0, right: 0 }}>
-        sdf
-      </button>
       {styleForLeftButtonChange && (
         <>
           {styleForLeftButtonChangeText && (
