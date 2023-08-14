@@ -11,6 +11,7 @@ import { getModels } from '../../../loaders/getModels';
 import { Link, useLoaderData } from 'react-router-dom';
 import { useUpdateEffect } from 'react-use';
 import { getNeighbors } from '../../../loaders/getNeighbors';
+import { ThemeContext } from '../../../context/ThemeContext';
 export async function loader({ params }) {
   // console.log(params);
   const data = await getModels(params.modelId);
@@ -19,6 +20,16 @@ export async function loader({ params }) {
 }
 
 export const Model = () => {
+  //theme
+  const { ChangeColor, primaryColor, backgroundColor, secondColor, textColor } =
+    useContext(ThemeContext);
+  let objWithTheme = {
+    '--primaryColor': primaryColor,
+    '--backgroundColor': backgroundColor,
+    '--secondColor': secondColor,
+    '--textColor': textColor,
+  };
+  //
   const leftButtobChangeRef = useRef(null);
   const rightButtobChangeRef = useRef(null);
   const [styleForLeftButtonChangeText, setStyleForLeftButtonChangeText] = useState(null);
@@ -87,7 +98,15 @@ export const Model = () => {
     }
   };
   const scene = new THREE.Scene();
+
   useEffect(() => {
+    //theme
+    ChangeColor('primary', data.colors.primary);
+    ChangeColor('background', data.colors.background);
+    ChangeColor('second', data.colors.second);
+    ChangeColor('text', data.colors.text);
+    //
+
     // console.log(2);
     // const handleScrollFromUp = () => {
     //   if (window.scrollY === 0) {
@@ -153,8 +172,8 @@ export const Model = () => {
       data.src,
       (gltf) => {
         const model = gltf.scene;
-        model.position.set(0, 0, 0);
-        model.scale.set(1, 1, 1);
+        model.position.set(data.params.position.x, data.params.position.y, data.params.position.z);
+        model.scale.set(data.params.scale.x, data.params.scale.y, data.params.scale.z);
         scene.add(model);
         console.log(scene);
         mixer = model;
@@ -185,7 +204,7 @@ export const Model = () => {
           left: `${left}px`,
           width: cubeRef.current.clientWidth,
           height: cubeRef.current.clientHeight,
-          zIndex: -3,
+          zIndex: 0,
         });
         console.log(top, left);
         const newWidth = left * 0.8;
@@ -206,8 +225,8 @@ export const Model = () => {
       }
     };
     var isAscending = true;
-    var maxYPosition = 0.15; // Maximum height to which the model will rise
-    var minYPosition = -0.15; // Minimum height at which the model will be placed
+    var maxYPosition = data.params.position.y + 0.15; // Maximum height to which the model will rise
+    var minYPosition = data.params.position.y - 0.15; // Minimum height at which the model will be placed
 
     var animate = function () {
       requestAnimationFrame(animate);
@@ -249,7 +268,7 @@ export const Model = () => {
         left: `${left}px`,
         width: cubeRef.current.clientWidth,
         height: cubeRef.current.clientHeight,
-        zIndex: -3,
+        zIndex: 0,
       });
     }
 
@@ -275,6 +294,13 @@ export const Model = () => {
   //   console.log(data);
   // }, [data]);
   useUpdateEffect(() => {
+    //Theme update
+    ChangeColor('primary', data.colors.primary);
+    ChangeColor('background', data.colors.background);
+    ChangeColor('second', data.colors.second);
+    ChangeColor('text', data.colors.text);
+    //
+
     console.log('WAs changed');
     //cleaning
     forModel.children = [];
@@ -303,8 +329,8 @@ export const Model = () => {
 
     camera.position.set(-5, 0, 0);
     var isAscending = true;
-    var maxYPosition = 0.15; // Maximum height to which the model will rise
-    var minYPosition = -0.15;
+    var maxYPosition = data.params.position.y + 0.15; // Maximum height to which the model will rise
+    var minYPosition = data.params.position.y - 0.15; // Minimum height at which the model will be placed
     // let controls = new TrackballControls(camera, renderer.domElement);
     let controls = new OrbitUnlimitedControls(camera, renderer.domElement);
     controls.enableDamping = false;
@@ -350,8 +376,8 @@ export const Model = () => {
       data.src,
       (gltf) => {
         const model = gltf.scene;
-        model.position.set(0, 0, 0);
-        model.scale.set(1, 1, 1);
+        model.position.set(data.params.position.x, data.params.position.y, data.params.position.z);
+        model.scale.set(data.params.scale.x, data.params.scale.y, data.params.scale.z);
         scene.add(model);
         console.log(scene);
         mixer = model;
@@ -384,7 +410,7 @@ export const Model = () => {
           left: `${left}px`,
           width: cubeRef.current.clientWidth,
           height: cubeRef.current.clientHeight,
-          zIndex: -3,
+          zIndex: 0,
         });
         const newWidth = left * 0.8;
         const newMargin = (left - newWidth) / 2;
@@ -462,27 +488,8 @@ export const Model = () => {
           </Link>
         </>
       )}
-      {/* <div className="change-model-buttons">
-        <div className="left-button change-button">
-          <div className="text-button">button 1</div>
-        </div>
-        <div className="right-button change-button">
-          <div className="text-button">button 1</div>
-        </div>
-      </div> */}
+
       <div className="first-view">
-        {/* <button
-          onClick={() => {
-            console.log(forModel);
-            console.log(scene);
-            forModel.children = [];
-            // const container = cubeRef.current;
-            // if (container.childNodes.length > 0) {
-            //   container.removeChild(container.lastChild);
-            // }
-          }}>
-          button
-        </button> */}
         <div className="wrap-for-canvas">
           <div
             style={loadingProgress === 100 ? {} : { display: 'none' }}
@@ -493,7 +500,7 @@ export const Model = () => {
         {loading && <CustomCursor targetRef={cubeRef} />}
         {loadingProgress === 100 && blockStyle && (
           <div className="bg-model" style={blockStyle}>
-            <div className="name-model">CYBERLLAMA</div>
+            <div className="name-model">{data.background.word}</div>
           </div>
         )}
         <div onClick={scrollToExplore} className="scroll-to-explore">

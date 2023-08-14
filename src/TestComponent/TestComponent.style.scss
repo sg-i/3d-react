@@ -1,0 +1,10 @@
+.test-button{
+    position: absolute;
+    top:10%;
+    left:50%;
+    width: 100px;
+    height: 100px;
+    z-index: 9999;
+    background-color: var(--testColor);
+    color: white;
+}

@@ -1,14 +1,11 @@
+
 .button-text{
-    // transform: translate(0, -50%);
-    // background-color: aquamarine;
     display: flex;
     align-items: center;
     justify-content: center;
-    &:hover{
-    }
+    color: var(--textColor);
 }
 .left-button-change{
-    
     cursor: pointer;
     position: absolute;
     border-radius: 10px;
@@ -16,16 +13,12 @@
     // top: 50%;
     // transform: translate(0, -50%);
     // border: 1px solid black;
-    border:3px solid rgba(255, 166, 41, 0.443);
+    border:3px solid var(--secondColor);
+    // border:3px solid var(--secondColor);
     // border-radius: 20px;
     // margin: 50px;
-    // background-color: blue;
     margin-left: -10px;
-    transform: perspective(10px) rotateY(-1deg) ; 
-    &:hover{
-
-    }
-    
+    transform: perspective(10px) rotateY(-1deg); 
 }
 .right-button-change{
     cursor: pointer;
@@ -35,7 +28,7 @@
     // top: 50%;
     // transform: translate(0, -50%);
     // border: 1px solid black;
-    border:3px solid rgba(255, 166, 41, 0.443);
+    border:3px solid var(--secondColor);
     // border-radius: 20px;
     // margin: 50px;
     // background-color: blue;
@@ -55,17 +48,7 @@
     min-height: 100vh;
     // min-width: 100%;
     z-index: 9999;
-    .change-button{
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
-        // width: 7vw;
-        top: 50%;
-        transform: translate(0, -50%);
-        // border: 1px solid rgba(255, 166, 41, 0.443);
-        height: 40vh;
-        border: 1px solid black;
-    }
+    
     .left-button{
         left: 0;
         
@@ -75,16 +58,6 @@
     
     .right-button{
         right:0;
-        
-        // transform: rotate(90deg);
-        // border-bottom: 10vw solid red;
-        // right: 1vw;
-        // width: 45vh;
-        // height: 6vw;
-        // background: red;
-        // transform: perspective(10px) rotateY(1deg) rotate(90deg);
-        // .text-button{
-        // }
     }
 }
 .first-view{
@@ -99,8 +72,11 @@
         display: flex;
         align-items: center;
         .canvas-3d{
+            z-index: 1;
+
             cursor: none;
-            border: 5px solid rgba(255, 166, 41, 0.443); ;  
+            border: 5px solid var(--secondColor);   
+            // border: 5px solid rgba(255, 166, 41, 0.443); ;  
             border-radius: 25px;
             background-color: rgba(0, 0, 0, 0);
             canvas{
@@ -110,7 +86,7 @@
                 border: 0;
                 background-color: rgba(0, 0, 0, 0);
             }
-    }
+        }
     }
     
     .bg-model{
@@ -120,7 +96,7 @@
         .name-model{
             font-size: 12vw;
             // color: rgb(247, 216, 42);
-            color:rgba(255, 166, 41, 0.443);
+            color: var(--secondColor);
             font-family: 'TTHoves';
             font-weight: bold;
         }
@@ -130,6 +106,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        color: var(--textColor);
         .sclr-exp-text{
            font-size: 13px;
            margin-bottom: 7px; 
@@ -138,7 +115,7 @@
         .vertical-line {
             width: 1px; 
             height: 20px; 
-            background-color: black; 
+            background-color: var(--textColor); 
             animation: bounce 0.7s infinite alternate; /* Название анимации, продолжительность, бесконечность, альтернативное движение */
         }
           
@@ -157,7 +134,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    color: var(--textColor);
     .content{
         font-size: 24px;
         white-space: pre-line;

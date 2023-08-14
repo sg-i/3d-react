@@ -3,14 +3,29 @@
         {
             "id":0,
             "name":"Cyberllama Anny",
+            
+            "params":{
+                "position":{
+                    "x":0,
+                    "y":0,
+                    "z":0
+                },
+                "scale":{
+                    "x":1,
+                    "y":1,
+                    "z":1
+                }
+            },
             "images":{
                 "miniModel": "../miniModel.png"
             },
             "src": "http://localhost:3000/models/cyberllama_anny/scene.gltf",
             "colors":{
-                "ui": "#fbfe74",
+                "primary": "#fbfe74",
                 "background": "#fbfe74",
-                "second":"rgba(255, 166, 41, 0.443)"
+                "second":"rgba(255, 166, 41, 0.443)",
+                "text": "black"
+                
             },
             "background": {
                 "word":"CYBERLLAMA",
@@ -29,45 +44,71 @@
         },
         {   
             "id": 1,
-            "name":"Cyberpunk Car",
+            "name":"Jukebox",
+            "params":{
+                "position":{
+                    "x":0,
+                    "y":-0.86,
+                    "z":0
+                },
+                "scale":{
+                    "x":1,
+                    "y":1,
+                    "z":1
+                }
+            },
             "images":{
                 "miniModel": "../miniModel.png"
             },
             "src": "http://localhost:3000/models/jukebox/scene.gltf",
             "colors":{
-                "ui": "#fbfe74",
+                "primary": "#dcbcbc",
                 "background": "#fbfe74",
-                "second":"rgba(255, 166, 41, 0.443)"
+                "second":"#E04C4C",
+                "text": "#870000"
             },
             "background": {
-                "word":"CYBERLLAMA",
-                "fontSize": "12vw"
+                "word":"JUKEBOX",
+                "fontSize": "15vw"
             },
             "content":{
                 "language":{
                     "en":{
-                        "story": "Once upon a time, in the futuristic world of Llamaville, a special llama named Cyberllama Anny lived. Cyberllama Anny wasn't your ordinary llama – she was a marvel of technology and cuteness, a blend of advanced robotics and fluffy charm.\n\nAnny was created by a brilliant scientist named Dr. Llamastein, who had a passion for both llamas and cutting-edge technology. Dr. Llamastein wanted to create a companion that would bring joy and wonder to the world, and thus, Cyberllama Anny came to life.\n\nWith her sleek silver metallic body adorned with colorful LED lights and a fluffy faux fur coat, Cyberllama Anny quickly became the star of Llamaville. She had big, expressive LED eyes that could change colors to match her mood, and her movements were smooth and graceful, thanks to her intricate robotic limbs. Anny's laughter was a melodious combination of soft beeps and giggles, spreading happiness wherever she went.\n\nAnny's days were spent exploring the technicolor landscapes of Llamaville, making friends with both humans and organic llamas. She loved to help the local farmers by tending to their digital gardens and ensuring that their virtual crops thrived. Anny had a special knack for creating intricate holographic flower arrangements that would bloom with radiant colors.\n\nOne day, a great pixel storm threatened to disrupt the tranquility of Llamaville. The townspeople were worried, unsure of how to protect their digital homes and gardens. But Cyberllama Anny stepped up, devising a plan to create a giant energy shield made of shimmering rainbow pixels. With her quick thinking and innovative approach, Anny managed to shield Llamaville from the storm's destructive power, saving the day and earning the admiration of everyone in the town.\n\nAs time went on, Cyberllama Anny continued to spread joy and creativity throughout Llamaville. She organized holographic art shows, taught virtual dance classes, and even helped Dr. Llamastein with his scientific experiments. Anny's heart was as warm as her LED lights were bright, and she cherished her friendships with both humans and digital beings alike.\n\nAnd so, the story of Cyberllama Anny, the adorable blend of technology and cuteness, became a beloved tale in Llamaville. Her legacy lived on as a reminder that even in a world filled with advanced gadgets and gizmos, the simplest things – like friendship, creativity, and laughter – were still the most important."
+                        "story": "Once upon a time, in a cozy café named \"Melodic Corner,\" a mysterious musical jukebox appeared. Its colors and style embodied a passion for music — dominant shades of vivid red, as if drops of fiery melody. It was given the name \"Crimson Rhythm.\" This jukebox was more than just a music-playing device; it became a wellspring of inspiration for all café visitors.\n\n\"Crimson Rhythm\" was something greater than an ordinary music machine. Its uniqueness lay in its ability to evoke a special emotional connection to the sounds. No matter how tired or disheartened you felt, touching its red buttons kindled an inner fire of passion.\n\nEvery melody emanating from the \"Crimson Rhythm\" seemed deeper and richer. It transformed mundane notes into a stream of emotions, enveloping each listener in the embrace of sound. Café visitors became its aficionados, finding in it a well of inspiration and tranquility.\n\nOver time, \"Crimson Rhythm\" became an integral part of the café's ambiance. It magnetized everyone who cherished music and wanted to express their emotions through it. The splendid fusion of red hues and the magic of sound made this jukebox the focal point and soul of the \"Melodic Corner\" café.\n\nWith the passing years, \"Crimson Rhythm\" turned into a symbol of musical passion and inspiration. Its story became deeply intertwined with the café's history, and anyone who experienced it took a fragment of that passion in their hearts. Even now, years later, memories of the \"Crimson Rhythm\" continue to reside in the songs, dreams, and emotions of all those fortunate enough to have felt its enchantment."
                     },
                     "ru":{
-                        "story": "Однажды, в будущем мире Ламавилля, жила особенная лама по имени Киберлама Энни. Киберлама Энни была необычной ламой – она была чудом технологии и милоты, сочетанием передовой робототехники и пушистой прелестью.\n\nЭнни была создана гениальным ученым по имени доктор Лламастайн, который разделял страсть и к ламам, и к передовой технологии. Доктор Лламастайн хотел создать спутника, который принес бы радость и восторг миру, и так появилась Киберлама Энни.\n\nС ее стильным серебряным металлическим корпусом, украшенным разноцветными светодиодами, и пушистым искусственным мехом, Киберлама Энни быстро стала звездой Ламавилля. У нее были большие выразительные светодиодные глаза, меняющие цвета в зависимости от настроения, а ее движения были плавными и изящными благодаря сложным роботизированным конечностям. Смех Энни звучал как мелодичное сочетание нежных писков и хихиканья, распространяя радость, где бы она ни появилась.\n\nДни Энни проходили в исследовании разноцветных пейзажей Ламавилля, в завоевании дружбы как с людьми, так и с органическими ламами. Ей нравилось помогать местным фермерам ухаживать за своими цифровыми садами и обеспечивать процветание их виртуальных урожаев. У Энни был особый талант создавать сложные голографические цветочные композиции, которые расцветали в излучаемых красках.\n\nОднажды над Ламавиллем нависла огромная пиксельная буря, угрожая нарушить спокойствие города. Жители были встревожены, не зная, как защитить свои цифровые дома и сады. Но Киберлама Энни предприняла шаг и разработала план создания гигантского энергетического щита из мерцающих радужных пикселей. Благодаря ее быстрому уму и инновационному подходу, Энни сумела защитить Ламавилль от разрушительной силы бури, спасая день и завоевывая восхищение всех жителей города.\n\nС течением времени Киберлама Энни продолжала распространять радость и креативность по Ламавиллю. Она организовывала голографические выставки искусства, проводила виртуальные уроки танцев, и даже помогала доктору Лламастайну в его научных экспериментах. Сердце Энни было так же теплым, как ее светодиодные глаза были яркими, и она ценила свои дружеские отношения как с людьми, так и с цифровыми существами.\n\nТак и жила Киберлама Энни, милый союз технологии и милоты, ставшая любимой сказкой в Ламавилле. Ее наследие жило и напоминало, что даже в мире, полном передовых гаджетов и устройств, самые простые вещи – как дружба, креативность и смех – оставались самыми важными."
+                        "story": "Давным-давно, в уютном кафе под названием \"Мелодичный Уголок,\" появился загадочный музыкальный автомат. Его цвета и стиль воплощали страсть к музыке — доминировали оттенки ярко-красного, как капли огненной мелодии. Его назвали \"Красный Ритм.\" Этот автомат был больше, чем просто устройство для воспроизведения музыки; он стал источником вдохновения для всех посетителей кафе.\n\n\"Красный Ритм\" был чем-то большим, чем обычная музыкальная машина. Его уникальность заключалась в способности вызывать особое эмоциональное влечение к звукам. Не важно, насколько вы устали или огорчены, прикосновение к его красным кнопкам разжигало внутренний огонь страсти.\n\nКаждая мелодия, звучавшая из \"Красного Ритма,\" казалась более глубокой и насыщенной. Он словно превращал обыденные ноты в поток эмоций, обволакивая каждого слушателя объятиями звуков. Посетители кафе становились его поклонниками, находя в нем источник вдохновения и спокойствия.\n\nСо временем \"Красный Ритм\" стал неотъемлемой частью атмосферы заведения. Он магнетизировал всех, кто ценил музыку и хотел выразить свои эмоции через нее. Великолепное сочетание красных оттенков и магии звука сделали этот автомат центром притяжения и душой кафе \"Мелодичный Уголок\".\n\nС годами \"Красный Ритм\" превратился в символ музыкальной страсти и вдохновения. Его история неразрывно переплелась с историей кафе, и каждый, кто испытал это, унес частичку страсти в своем сердце. Даже сейчас, спустя годы, воспоминания о \"Красном Ритме\" продолжают жить в песнях, мечтах и эмоциях всех тех, кто был достаточно удачлив, чтобы ощутить его очарование."
                     }
                 }
             }
         },
         {   
             "id": 2,
-            "name":"Thirst Model",
+            "name": "Hover bike - \"The Rocket\"",
+            "params":{
+                "position":{
+                    "x":0,
+                    "y":0,
+                    "z":0
+                },
+                "scale":{
+                    "x":1,
+                    "y":1,
+                    "z":1
+                }
+            },
             "images":{
                 "miniModel": "../miniModel.png"
             },
-            "src": "http://localhost:3000/models/jukebox/scene.gltf",
+            "src": "http://localhost:3000/models/hover_bike_-_the_rocket/scene.gltf",
             "colors":{
-                "ui": "#fbfe74",
+                "primary": "#fbfe74",
                 "background": "#fbfe74",
-                "second":"rgba(255, 166, 41, 0.443)"
+                "second":"rgba(255, 166, 41, 0.443)",
+                "text": "black"
             },
             "background": {
-                "word":"CYBERLLAMA",
+                "word":"THE ROCKET",
                 "fontSize": "12vw"
             },
             "content":{
@@ -84,14 +125,27 @@
         {   
             "id": 3,
             "name":"Thirst Model",
+            "params":{
+                "position":{
+                    "x":0,
+                    "y":0,
+                    "z":0
+                },
+                "scale":{
+                    "x":1,
+                    "y":1,
+                    "z":1
+                }
+            },
             "images":{
                 "miniModel": "../miniModel.png"
             },
             "src": "http://localhost:3000/models/jukebox/scene.gltf",
             "colors":{
-                "ui": "#fbfe74",
+                "primary": "#fbfe74",
                 "background": "#fbfe74",
-                "second":"rgba(255, 166, 41, 0.443)"
+                "second":"rgba(255, 166, 41, 0.443)",
+                "text": "black"
             },
             "background": {
                 "word":"CYBERLLAMA",
@@ -111,14 +165,27 @@
         {   
             "id": 4,
             "name":"Thirst Model",
+            "params":{
+                "position":{
+                    "x":0,
+                    "y":0,
+                    "z":0
+                },
+                "scale":{
+                    "x":1,
+                    "y":1,
+                    "z":1
+                }
+            },
             "images":{
                 "miniModel": "../miniModel.png"
             },
             "src": "http://localhost:3000/models/jukebox/scene.gltf",
             "colors":{
-                "ui": "#fbfe74",
+                "primary": "#fbfe74",
                 "background": "#fbfe74",
-                "second":"rgba(255, 166, 41, 0.443)"
+                "second":"rgba(255, 166, 41, 0.443)",
+                "text": "black"
             },
             "background": {
                 "word":"CYBERLLAMA",
@@ -138,14 +205,27 @@
         {   
             "id": 5,
             "name":"Thirst Model",
+            "params":{
+                "position":{
+                    "x":0,
+                    "y":0,
+                    "z":0
+                },
+                "scale":{
+                    "x":1,
+                    "y":1,
+                    "z":1
+                }
+            },
             "images":{
                 "miniModel": "../miniModel.png"
             },
             "src": "http://localhost:3000/models/jukebox/scene.gltf",
             "colors":{
-                "ui": "#fbfe74",
+                "primary": "#fbfe74",
                 "background": "#fbfe74",
-                "second":"rgba(255, 166, 41, 0.443)"
+                "second":"rgba(255, 166, 41, 0.443)",
+                "text": "black"
             },
             "background": {
                 "word":"CYBERLLAMA",

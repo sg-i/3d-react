@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CustomCursor.scss';
 
-const CustomCursor = ({ targetRef }) => {
+const CustomCursor = ({ targetRef, objWithTheme }) => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   const updateCursorPosition = (e) => {

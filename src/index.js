@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 import './fonts/tt/TTHoves-Medium.ttf';
-// import { Root} from './routes/Root';
 import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom';
 import ErrorPage from './routes/ErrorPage';
 import { Model, loader as modelLoader } from './components/Pages/Model/Model';
 import { Home, loader as modelsLoader } from './components/Pages/Home/Home';
 import { getModels } from './loaders/getModels';
+import { LanguageProvider } from './context/LanguageContext';
+import { ThemeContext, ThemeProvider } from './context/ThemeContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const detectedLanguage = navigator.language.split('-')[0];
@@ -47,13 +48,11 @@ const router = createBrowserRouter([
 ]);
 
 root.render(
-  // <React.StrictMode>
-  // <App />,
-  <RouterProvider router={router} />,
-  // </React.StrictMode>
+  <LanguageProvider>
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  </LanguageProvider>,
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

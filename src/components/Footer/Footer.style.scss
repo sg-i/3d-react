@@ -1,12 +1,13 @@
 .footer{
     // margin-top:40px;
     // margin-bottom: 20px;
+
     width: 100%;
     // padding-bottom: 40px;
     .footer-wrap{
         margin: 0 auto;
         width: 95%;
-        border-top: 3px solid black;
-
+        border-top: 3px solid var(--textColor);
+        color: var(--textColor);
     }
 }

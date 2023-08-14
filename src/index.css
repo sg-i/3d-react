@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fbfe74;
+  /* background-color: #fbfe74; */
   /* background-color: black; */
 }
 
@@ -26,21 +26,6 @@ body {
 
 }
 
-/* custom scrollbar */
-*::-webkit-scrollbar {
-  width: 17px;
-}
-*::-webkit-scrollbar-track {
-  background: #fbfe74;
-  /* change me to blue to match the background */
-}
-*::-webkit-scrollbar-thumb {
-  border-radius: 14px;
-  background: black;
-  border-right: 4px #fbfe74 solid;
-  border-left: 4px #fbfe74 solid;
-
-  border-top: 3px #fbfe74 solid;
-  border-bottom: 3px #fbfe74 solid;
-  /* change border color to blue to match the background */
+*{
+  transition: background-color 0.4s ease-in-out;
 }
