@@ -56,6 +56,7 @@ export function App() {
                 overflow: 'hidden',
                 top: 0,
                 height: `${newWindowHeight}px`,
+                color: textColor,
                 backgroundColor: primaryColor,
                 width: '100%',
                 zIndex: 9999,
@@ -64,6 +65,7 @@ export function App() {
             : {
                 position: 'fixed',
                 overflow: 'hidden',
+                color: textColor,
                 top: 0,
                 height: '0px',
                 backgroundColor: primaryColor,

@@ -4,6 +4,9 @@
     align-items: center;
     justify-content: center;
     color: var(--textColor);
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 4px;
 }
 .left-button-change{
     cursor: pointer;

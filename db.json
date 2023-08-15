@@ -88,13 +88,13 @@
             "params":{
                 "position":{
                     "x":0,
-                    "y":0,
+                    "y":-0.6,
                     "z":0
                 },
                 "scale":{
-                    "x":1,
-                    "y":1,
-                    "z":1
+                    "x":0.005,
+                    "y":0.005,
+                    "z":0.005
                 }
             },
             "images":{
@@ -102,10 +102,10 @@
             },
             "src": "http://localhost:3000/models/hover_bike_-_the_rocket/scene.gltf",
             "colors":{
-                "primary": "#fbfe74",
+                "primary": "#270a46",
                 "background": "#fbfe74",
-                "second":"rgba(255, 166, 41, 0.443)",
-                "text": "black"
+                "second": "rgb(115 117 202 / 55%)",
+                "text": "#afa6e8"
             },
             "background": {
                 "word":"THE ROCKET",
