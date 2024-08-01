@@ -1,0 +1,7 @@
+.arrow-button{
+    &:hover{
+        // opacity: 0.8;
+        scale: 1.1;
+        transition: scale 100ms ease ;
+    }
+}

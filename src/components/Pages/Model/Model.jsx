@@ -12,6 +12,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { useUpdateEffect } from 'react-use';
 import { getNeighbors } from '../../../loaders/getNeighbors';
 import { ThemeContext } from '../../../context/ThemeContext';
+import { ArrowButton } from '../../ArrowButton/ArrowButton';
 export async function loader({ params }) {
   // console.log(params);
   const data = await getModels(params.modelId);
@@ -198,10 +199,12 @@ export const Model = () => {
       renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
       if (cubeRef.current) {
         const { top, left, right, height } = cubeRef.current.getBoundingClientRect();
+        console.log(cubeRef.current);
+
         setBlockStyle({
           position: 'absolute',
-          top: `${top}px`,
-          left: `${left}px`,
+          top: `${top + window.scrollY}px`,
+          left: `${left + window.scrollX}px`,
           width: cubeRef.current.clientWidth,
           height: cubeRef.current.clientHeight,
           zIndex: 0,
@@ -261,6 +264,7 @@ export const Model = () => {
     // animate();
 
     if (cubeRef.current) {
+      console.log(cubeRef.current);
       const { top, left } = cubeRef.current.getBoundingClientRect();
       setBlockStyle({
         position: 'absolute',
@@ -404,10 +408,12 @@ export const Model = () => {
     if (loadingProgress === 100) {
       if (cubeRef.current) {
         const { top, left, right, height } = cubeRef.current.getBoundingClientRect();
+        console.log(cubeRef.current);
+
         setBlockStyle({
           position: 'absolute',
-          top: `${top}px`,
-          left: `${left}px`,
+          top: `${top + window.scrollY}px`,
+          left: `${left + window.scrollX}px`,
           width: cubeRef.current.clientWidth,
           height: cubeRef.current.clientHeight,
           zIndex: 0,
@@ -457,8 +463,8 @@ export const Model = () => {
     }
   }, [styleForRightButtonChange]);
   return (
-    <div>
-      {styleForLeftButtonChange && (
+    <div style={{ width: '100%' }}>
+      {/* {styleForLeftButtonChange && (
         <>
           {styleForLeftButtonChangeText && (
             <div style={styleForLeftButtonChangeText} className="button-text">
@@ -487,28 +493,40 @@ export const Model = () => {
               className="right-button-change"></div>
           </Link>
         </>
-      )}
-
-      <div className="first-view">
-        <div className="wrap-for-canvas">
-          <div
-            style={loadingProgress === 100 ? {} : { display: 'none' }}
-            className="canvas-3d"
-            ref={cubeRef}></div>
-          {loadingProgress !== 100 && <progress value={loadingProgress} max={100} />}
-        </div>
-        {loading && <CustomCursor targetRef={cubeRef} />}
-        {loadingProgress === 100 && blockStyle && (
-          <div className="bg-model" style={blockStyle}>
-            <div className="name-model">{data.background.word}</div>
+      )} */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+        }}>
+        <Link to={`/models/${prev.id}`}>
+          <ArrowButton side="left" rotate={180} />
+        </Link>
+        <div className="first-view">
+          <div className="wrap-for-canvas">
+            <div
+              style={loadingProgress === 100 ? {} : { display: 'none' }}
+              className="canvas-3d"
+              ref={cubeRef}></div>
+            {loadingProgress !== 100 && <progress value={loadingProgress} max={100} />}
           </div>
-        )}
-        <div onClick={scrollToExplore} className="scroll-to-explore">
-          <div className="sclr-exp-text">
-            {userLanguage === 'ru' ? 'ПРОКРУТИ ЧТОБЫ УЗНАТЬ' : 'SCROLL TO EXPLORE'}
+          {loading && <CustomCursor targetRef={cubeRef} />}
+          {loadingProgress === 100 && blockStyle && (
+            <div className="bg-model" style={blockStyle}>
+              <div className="name-model">{data.background.word}</div>
+            </div>
+          )}
+          <div onClick={scrollToExplore} className="scroll-to-explore">
+            <div className="sclr-exp-text">
+              {userLanguage === 'ru' ? 'ПРОКРУТИ ЧТОБЫ УЗНАТЬ' : 'SCROLL TO EXPLORE'}
+            </div>
+            <div className="vertical-line"></div>
           </div>
-          <div className="vertical-line"></div>
         </div>
+        <Link to={`/models/${next.id}`}>
+          <ArrowButton side="right" rotate={0} />
+        </Link>
       </div>
       <div id="second-view" className="second-view">
         <div className="content-title content">

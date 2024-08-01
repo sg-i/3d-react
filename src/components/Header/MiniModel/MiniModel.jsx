@@ -6,7 +6,7 @@ export const MiniModel = ({ id, name, image, isSelected, setIsMenuOn, onSelect }
     <Link
       onClick={() => setIsMenuOn(false)}
       style={{ marginLeft: 5, marginRight: 5 }}
-      to={`models/${id}`}>
+      to={`/models/${id}`}>
       <div className={'mini-model'} onClick={onSelect}>
         <img
           className={`image-mini-model ${isSelected ? 'mini-model-selected' : ''}`}

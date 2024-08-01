@@ -1,7 +1,7 @@
 export async function getNeighbors(recordId) {
   try {
     console.log(recordId);
-    const response = await fetch('http://localhost:3001/models');
+    const response = await fetch('http://localhost:3002/models');
     const data = await response.json();
     console.log(data);
 

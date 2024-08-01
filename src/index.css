@@ -22,10 +22,14 @@ code {
 
 body {
   overflow: auto;
-  scrollbar-color: black transparent ; 
+  scrollbar-color: black ; 
 
 }
 
 *{
-  transition: background-color 0.4s ease-in-out;
+  transition: background-color 0.4s ease-in-out, scrollbar-color 0.4s ease-in-out;
+}
+.refresh-scrollbars {
+  /* Визуально этот класс ничего не делает, но он помогает принудительно обновить стили */
+  transition: background-color 0.4s ease-in-out, scrollbar-color 0.4s ease-in-out;
 }

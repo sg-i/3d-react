@@ -5,7 +5,7 @@ const CustomCursor = ({ targetRef, objWithTheme }) => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   const updateCursorPosition = (e) => {
-    setCursorPosition({ x: e.clientX, y: e.clientY });
+    setCursorPosition({ x: e.clientX + window.scrollX, y: e.clientY + window.scrollY });
   };
 
   const defaultPlaceFOrCursor = () => {

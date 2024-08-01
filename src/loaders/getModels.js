@@ -1,5 +1,5 @@
 export async function getModels(params) {
-  let url = 'http://localhost:3001/models';
+  let url = 'http://localhost:3002/models';
 
   if (params) {
     // console.log('params', params);
