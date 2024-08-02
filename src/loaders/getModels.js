@@ -1,6 +1,7 @@
 export async function getModels(params) {
   // let url = 'http://localhost:3002/models';
-  let url = 'https://three-react.free.beeceptor.com/models';
+  let url = 'https://json-server-vercel-3d-react.vercel.app/models';
+  // let url = '/db.json';
 
   if (params) {
     // console.log('params', params);

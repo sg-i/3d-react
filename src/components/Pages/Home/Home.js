@@ -55,7 +55,7 @@ export const Home = () => {
         </div>
       </div>
       <div style={{ color: textColor }} className="buttons">
-        <Link to="https://github.com/sg-i" target="_blank" rel="noopener noreferrer">
+        <Link to="https://new-portfolio-next.vercel.app/" target="_blank" rel="noopener noreferrer">
           <div className="element">{userLanguage === 'ru' ? 'Портфолио' : 'Portfolio'}</div>
         </Link>
         <Link to="https://github.com/sg-i" target="_blank" rel="noopener noreferrer">

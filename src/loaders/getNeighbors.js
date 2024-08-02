@@ -2,7 +2,8 @@ export async function getNeighbors(recordId) {
   try {
     console.log(recordId);
     // const response = await fetch('http://localhost:3002/models');
-    const response = await fetch('https://three-react.free.beeceptor.com/models');
+    const response = await fetch('https://json-server-vercel-3d-react.vercel.app/models');
+    // const response = await fetch('/db.json');
     const data = await response.json();
     console.log(data);
 
