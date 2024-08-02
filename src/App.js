@@ -13,6 +13,7 @@ import { TestComponent } from './TestComponent/TestComponent';
 
 export function App() {
   const { data } = useLoaderData();
+  console.log(data);
   const { ChangeColor, primaryColor, backgroundColor, secondColor, textColor } =
     useContext(ThemeContext);
 
@@ -40,9 +41,10 @@ export function App() {
     // document.body.style.overflow = isMenuOn ? 'auto' : 'hidden';
   };
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState();
 
   const handleSelectItem = (item) => {
+    console.log(item);
     setSelectedItem(item);
   };
 
@@ -89,7 +91,7 @@ export function App() {
                 id={item.id}
                 image={item.images.miniModel}
                 name={item.name}
-                isSelected={selectedItem === item}
+                isSelected={(selectedItem ? selectedItem.id : -1) == item.id}
                 setIsMenuOn={setIsMenuOn}
                 onSelect={() => handleSelectItem(item)}
               />
@@ -104,7 +106,7 @@ export function App() {
           isMenuOn ? { top: headerPosition, boxShadow: '0px 7px 34px rgba(0, 0, 0, 0.3)' } : {}
         }
       />
-      {<Outlet />}
+      {<Outlet context={[selectedItem, setSelectedItem]} />}
 
       <Footer />
     </div>

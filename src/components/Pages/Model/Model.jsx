@@ -8,7 +8,7 @@ import OrbitUnlimitedControls from '@janelia/three-orbit-unlimited-controls';
 import CustomCursor from '../../CustomCursor/CustomCursor';
 import './Model.style.scss';
 import { getModels } from '../../../loaders/getModels';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useOutletContext } from 'react-router-dom';
 import { useUpdateEffect } from 'react-use';
 import { getNeighbors } from '../../../loaders/getNeighbors';
 import { ThemeContext } from '../../../context/ThemeContext';
@@ -22,6 +22,7 @@ export async function loader({ params }) {
 
 export const Model = () => {
   //theme
+  const [selectedItem, setSelectedItem] = useOutletContext();
   const { ChangeColor, primaryColor, backgroundColor, secondColor, textColor } =
     useContext(ThemeContext);
   let objWithTheme = {
@@ -148,7 +149,7 @@ export const Model = () => {
     controls.maxZoom = 1;
     let startTouching, endTouching;
     const handleMouseUp = () => {
-      // console.log('new event');
+      console.log('new event');
       startTouching = Date.now();
       // console.log('ren end');
       IsTouching = false;
@@ -291,6 +292,7 @@ export const Model = () => {
 
     // Добавляем слушатель события прокрутки для окна
     window.addEventListener('scroll', handleScroll);
+    setSelectedItem(data);
   }, []);
 
   // useEffect(() => {
@@ -299,6 +301,7 @@ export const Model = () => {
   // }, [data]);
   useUpdateEffect(() => {
     //Theme update
+
     ChangeColor('primary', data.colors.primary);
     ChangeColor('background', data.colors.background);
     ChangeColor('second', data.colors.second);
@@ -398,6 +401,7 @@ export const Model = () => {
         console.error(e);
       },
     );
+    setSelectedItem(data);
     // scene.clear();
     // while (scene.children.length > 0) {
     //   scene.remove(scene.children[0]);

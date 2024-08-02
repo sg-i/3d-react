@@ -4,7 +4,7 @@ import { ThemeContext } from '../../context/ThemeContext';
 
 export const ArrowButton = ({ rotate, side }) => {
   const theme = useContext(ThemeContext);
-  console.log(theme);
+  // console.log(theme);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
