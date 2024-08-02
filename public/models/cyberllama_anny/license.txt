@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cyberllama Anny
+* source:	https://sketchfab.com/3d-models/cyberllama-anny-de3051373c3b48bb8280a8ffa61af10e
+* author:	SamTheCaribbean (https://sketchfab.com/SamTheCaribbean)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cyberllama Anny" (https://sketchfab.com/3d-models/cyberllama-anny-de3051373c3b48bb8280a8ffa61af10e) by SamTheCaribbean (https://sketchfab.com/SamTheCaribbean) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
