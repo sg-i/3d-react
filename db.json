@@ -19,7 +19,7 @@
             "images":{
                 "miniModel": "../miniModelLama.png"
             },
-            "src": "http://localhost:3001/models/cyberllama_anny/scene.gltf",
+            "src": "https://3d-react-lyart.vercel.app/models/cyberllama_anny/scene.gltf",
             "colors":{
                 "primary": "#fbfe74",
                 "background": "#fbfe74",
@@ -60,7 +60,7 @@
             "images":{
                 "miniModel": "../miniModelJuke.png"
             },
-            "src": "http://localhost:3001/models/jukebox/scene.gltf",
+            "src": "https://3d-react-lyart.vercel.app/models/jukebox/scene.gltf",
             "colors":{
                 "primary": "#dcbcbc",
                 "background": "#fbfe74",
@@ -100,7 +100,7 @@
             "images":{
                 "miniModel": "../miniModelTheRocket.png"
             },
-            "src": "http://localhost:3001/models/hover_bike_-_the_rocket/scene.gltf",
+            "src": "https://3d-react-lyart.vercel.app/models/hover_bike_-_the_rocket/scene.gltf",
             "colors":{
                 "primary": "#270a46",
                 "background": "#fbfe74",
