@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './fonts/tt/TTHoves-Medium.ttf';
 import './index.css';
@@ -10,7 +10,7 @@ import { Model, loader as modelLoader } from './components/Pages/Model/Model';
 import { Home, loader as modelsLoader } from './components/Pages/Home/Home';
 import { getModels } from './loaders/getModels';
 import { LanguageProvider } from './context/LanguageContext';
-import { ThemeContext, ThemeProvider } from './context/ThemeContext';
+import { ThemeProvider } from './context/ThemeContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

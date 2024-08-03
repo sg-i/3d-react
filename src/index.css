@@ -5,8 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: #fbfe74; */
-  /* background-color: black; */
 }
 
 code {
@@ -30,6 +28,5 @@ body {
   transition: background-color 0.4s ease-in-out, scrollbar-color 0.4s ease-in-out;
 }
 .refresh-scrollbars {
-  /* Визуально этот класс ничего не делает, но он помогает принудительно обновить стили */
   transition: background-color 0.4s ease-in-out, scrollbar-color 0.4s ease-in-out;
 }

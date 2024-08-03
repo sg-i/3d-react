@@ -1,21 +1,14 @@
-import logo from './logo.svg';
-import React, { useEffect, useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import './App.scss';
-import { LanguageProvider } from './context/LanguageContext';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
-import { Model } from './components/Pages/Model/Model';
-import { Link, Outlet, useLoaderData, useNavigate } from 'react-router-dom';
-import { getModels } from './loaders/getModels';
+import { Outlet, useLoaderData } from 'react-router-dom';
 import { MiniModel } from './components/Header/MiniModel/MiniModel';
-import { ThemeContext, ThemeProvider } from './context/ThemeContext';
-import { TestComponent } from './TestComponent/TestComponent';
+import { ThemeContext } from './context/ThemeContext';
 
 export function App() {
   const { data } = useLoaderData();
-  console.log(data);
-  const { ChangeColor, primaryColor, backgroundColor, secondColor, textColor } =
-    useContext(ThemeContext);
+  const { primaryColor, backgroundColor, secondColor, textColor } = useContext(ThemeContext);
 
   let objWithTheme = {
     '--primaryColor': primaryColor,
@@ -29,62 +22,39 @@ export function App() {
   const [newWindowHeight, setNewWindowHeight] = useState(0);
   const headerRef = useRef(null);
 
-  const navigate = useNavigate();
   const toggleMenu = () => {
-    console.log(headerRef.current);
     const headerHeightNow = headerRef.current.clientHeight;
     const screenHeight = window.innerHeight / 3;
     setHeaderPosition(isMenuOn ? 0 : screenHeight - headerHeightNow);
     setHeaderHeight(headerHeightNow);
     setNewWindowHeight(screenHeight - headerHeightNow);
     setIsMenuOn(!isMenuOn);
-    // document.body.style.overflow = isMenuOn ? 'auto' : 'hidden';
   };
 
   const [selectedItem, setSelectedItem] = useState();
 
   const handleSelectItem = (item) => {
-    console.log(item);
     setSelectedItem(item);
   };
 
   return (
     <div style={objWithTheme} className="App">
       <div
+        className="navbar-menu"
         style={
           isMenuOn
             ? {
-                position: 'fixed',
-                overflow: 'hidden',
-                top: 0,
                 height: `${newWindowHeight}px`,
                 color: textColor,
                 backgroundColor: primaryColor,
-                width: '100%',
-                zIndex: 9999,
-                transition: 'height 0.7s ease-in-out',
               }
             : {
-                position: 'fixed',
-                overflow: 'hidden',
                 color: textColor,
-                top: 0,
-                height: '0px',
                 backgroundColor: primaryColor,
-                width: '100%',
-                zIndex: 9999,
-                transition: 'height 0.7s ease-in-out',
               }
         }>
         {
-          <div
-            style={{
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              overflowX: 'auto',
-              overflowY: 'hidden',
-            }}>
+          <div className="content">
             {data.map((item) => (
               <MiniModel
                 key={item.id}
