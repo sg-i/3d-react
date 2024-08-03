@@ -1,16 +1,10 @@
 export async function getNeighbors(recordId) {
   try {
-    console.log(recordId);
-    // const response = await fetch('http://localhost:3002/models');
     const response = await fetch('https://json-server-vercel-3d-react.vercel.app/models');
-    // const response = await fetch('/db.json');
     const data = await response.json();
-    console.log(data);
 
     const recordIndex = data.findIndex((model) => model.id == recordId);
-    console.log(recordIndex);
     const totalRecords = data.length;
-    console.log(totalRecords);
     if (recordIndex === -1) {
       return null; // Если запись с указанным id не найдена
     }

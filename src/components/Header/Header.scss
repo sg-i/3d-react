@@ -6,7 +6,6 @@ a{
     font-size: 21px;
     border: none;
     background-color: var(--primaryColor);
-    // background-color: rgba(0,0,0,0);
     position: fixed;
     top:0;
     display: flex;
@@ -18,11 +17,7 @@ a{
     align-items: center;
     box-shadow: 0px 9px 20px rgba(191, 31, 31, 0);
     transition: box-shadow 0.7s ease-in-out, top 0.7s ease-in-out, background-color 0.4s ease-in-out;
-    
     z-index: 15;
-    // border-bottom: 2px solid transparent;
-    // overflow: hidden; 
-    // margin-bottom: 2px;
     .header-title-wrap{
         color: var(--textColor);
         font-weight: 900;
@@ -54,16 +49,11 @@ a{
         .en-lang{
             margin-right: 8px;
         }
-        .ru-lang{
-
-        }
         .selected{
             color: var(--textColor)
         }
         .unselected{
             color: var(--secondColor);
-            // -webkit-text-stroke: 0.1px #9b9b9b; 
-            // text-stroke: 0.1px #9b9b9b;
         }
     }
 }

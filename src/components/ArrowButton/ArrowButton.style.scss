@@ -1,7 +1,9 @@
 .arrow-button{
     z-index: 20;
+    position: fixed;
+    top: 45%;
+    width: 80px;
     &:hover{
-        // opacity: 0.8;
         scale: 1.1;
         transition: scale 100ms ease ;
     }

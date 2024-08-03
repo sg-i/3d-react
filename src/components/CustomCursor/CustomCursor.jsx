@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CustomCursor.scss';
 
-const CustomCursor = ({ targetRef, objWithTheme }) => {
+const CustomCursor = ({ targetRef }) => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   const updateCursorPosition = (e) => {
@@ -12,7 +12,6 @@ const CustomCursor = ({ targetRef, objWithTheme }) => {
     if (targetRef && targetRef.current) {
       const targetElement = targetRef.current;
       const { left, top, width, height } = targetElement.getBoundingClientRect();
-
       setCursorPosition({ x: left + width * 0.8, y: top + height * 0.8 });
     }
   };
@@ -26,23 +25,13 @@ const CustomCursor = ({ targetRef, objWithTheme }) => {
         updateCursorPosition(e);
       };
 
-      // default state for the cursor outside the canvas
-      const handleMouseLeave = () => {
-        defaultPlaceFOrCursor();
-      };
-
       targetElement.addEventListener('mousemove', handleMouseMove);
 
-      // default state for the cursor outside the canvas
-      // targetElement.addEventListener('mouseleave', handleMouseLeave);
       window.addEventListener('resize', () => {
         defaultPlaceFOrCursor();
       });
       return () => {
         targetElement.removeEventListener('mousemove', handleMouseMove);
-
-        // default state for the cursor outside the canvas
-        // targetElement.removeEventListener('mouseleave', handleMouseLeave);
       };
     }
   }, [targetRef]);

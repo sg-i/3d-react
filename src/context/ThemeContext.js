@@ -1,14 +1,12 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react';
-import { useUpdateEffect } from 'react-use';
 
 const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
-  const [primaryColor, setPrimaryColor] = useState('#fbfe74');
-  const [backgroundColor, setBackgroundColor] = useState('#fbfe74');
-  const [secondColor, setSecondColor] = useState('rgba(255, 166, 41, 0.443)');
-  const [textColor, setTextColor] = useState('black');
-
+  const [primaryColor, setPrimaryColor] = useState('#222222');
+  const [backgroundColor, setBackgroundColor] = useState('orange');
+  const [secondColor, setSecondColor] = useState('gray)');
+  const [textColor, setTextColor] = useState('orange');
   const ChangeColor = (type, color) => {
     switch (type) {
       case 'primary':
@@ -68,7 +66,6 @@ const ThemeProvider = ({ children }) => {
     [textColor, primaryColor],
   );
   useEffect(() => {
-    console.log(primaryColor, secondColor, textColor, backgroundColor);
     applyGlobalStyles(primaryColor);
   }, [primaryColor, secondColor, textColor, backgroundColor, applyGlobalStyles]);
 

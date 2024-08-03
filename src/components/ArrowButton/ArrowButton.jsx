@@ -4,7 +4,6 @@ import { ThemeContext } from '../../context/ThemeContext';
 
 export const ArrowButton = ({ rotate, side }) => {
   const theme = useContext(ThemeContext);
-  // console.log(theme);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -16,10 +15,7 @@ export const ArrowButton = ({ rotate, side }) => {
       onClick={scrollToTop}
       className="arrow-button"
       style={{
-        position: 'fixed',
         transform: `rotate(${rotate}deg)`,
-        top: '45%',
-        width: 80,
         [side]: 10,
       }}>
       <svg

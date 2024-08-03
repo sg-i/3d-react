@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.scss';
 import { LanguageContext } from '../../context/LanguageContext';
@@ -6,16 +6,10 @@ export const Header = ({ style, headerRef, toggleMenu }) => {
   const { userLanguage, changeLanguage } = useContext(LanguageContext);
   const handleLanguageChange = (newLang) => {
     if (userLanguage != newLang) {
-      //   console.log('new lang', newLang);
       changeLanguage(newLang);
     }
   };
-  const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
+
   return (
     <header ref={headerRef} style={style} className="header">
       <div className="header-title-wrap">
@@ -24,7 +18,6 @@ export const Header = ({ style, headerRef, toggleMenu }) => {
         </Link>
       </div>
       <div className="header-svg">
-        {/* <Link to={'home'}> */}
         <svg
           onClick={toggleMenu}
           xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +31,6 @@ export const Header = ({ style, headerRef, toggleMenu }) => {
             fill="#323232"
           />
         </svg>
-        {/* </Link> */}
       </div>
       <div className="header-language">
         <span
