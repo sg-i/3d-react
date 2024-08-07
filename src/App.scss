@@ -14,7 +14,7 @@
     height: 0px;
     width: 100%;
     z-index: 9999;
-    transition: height 0.7 ease-in-out;
+    transition: 'height 0.7s ease-in-out';
     .content{
       height: 100%;
       display: flex;

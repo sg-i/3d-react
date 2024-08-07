@@ -47,10 +47,12 @@ export function App() {
                 height: `${newWindowHeight}px`,
                 color: textColor,
                 backgroundColor: primaryColor,
+                transition: 'height 0.7s ease-in-out',
               }
             : {
                 color: textColor,
                 backgroundColor: primaryColor,
+                transition: 'height 0.7s ease-in-out',
               }
         }>
         {

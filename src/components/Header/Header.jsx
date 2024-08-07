@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import './Header.scss';
+import './Header.style.scss';
 import { LanguageContext } from '../../context/LanguageContext';
 export const Header = ({ style, headerRef, toggleMenu }) => {
   const { userLanguage, changeLanguage } = useContext(LanguageContext);
